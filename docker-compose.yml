@@ -8,25 +8,20 @@ version: "3.7"
 services:
   onepick.store.s3:
     image: minio/minio
-    container_name: onepick.store.s3
-    hostname: onepick.store.s3
     environment: 
       - MINIO_ROOT_USER=BiNTFK2ZNNPDjnq7DiM6
       - MINIO_ROOT_PASSWORD=9kWq23J4jE6fkdbnaTfHWaiWn4krs6cJ
     ports:
       - 9000:9000
-    networks:
-      - onepick.store
     volumes:
       - minio-data:/data
     command: server /data
 
+  onepick.public.stripemock:
+    image: stripemock/stripe-mock:latest
+    ports:
+      - 12111:12111
+
 volumes:
   minio-data:
     driver: local
-
-networks:
-  onepick.store:
-    name: onepick.store
-    driver: bridge
-
