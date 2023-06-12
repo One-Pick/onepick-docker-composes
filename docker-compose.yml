@@ -22,6 +22,18 @@ services:
     ports:
       - 12111:12111
 
+  onepick.store.elastic:
+    image: bitnami/elasticsearch:7.14.0
+    user: root
+    volumes:
+      - elastic-data:/bitnami/elasticsearch/data
+    environment:
+      - ELASTICSEARCH_HEAP_SIZE=512m
+    ports:
+      - 9200:9200
+      - 9300:9300
+
 volumes:
+  elastic-data:
   minio-data:
     driver: local
