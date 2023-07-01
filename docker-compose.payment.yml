@@ -1,0 +1,12 @@
+###
+# database/store layer
+# Start services/third-party services for development.
+###
+
+version: "3.7"
+
+services:
+  onepick.public.stripemock:
+    image: stripemock/stripe-mock:latest
+    ports:
+      - 12111:12111
